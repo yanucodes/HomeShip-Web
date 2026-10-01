@@ -1,0 +1,3 @@
+# Prettier already skips node_modules and everything in .gitignore.
+# npm owns this file's formatting.
+package-lock.json
