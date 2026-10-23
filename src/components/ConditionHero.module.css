@@ -1,0 +1,134 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 30px 36px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  position: relative;
+  overflow: hidden;
+}
+/* Accent glow in the top-right corner. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    620px 300px at 100% 0%,
+    oklch(from var(--accent) 0.3 c h / 0.25),
+    transparent 70%
+  );
+}
+[data-alert="auto-destruct"] .hero {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      oklch(from var(--destruct) 0.22 c h / 0.14) 0 18px,
+      transparent 18px 36px
+    ),
+    linear-gradient(180deg, var(--panel-2), var(--panel));
+}
+
+.readout {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.lamp {
+  flex: 0 0 auto;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 32% 30%,
+    oklch(1 0 0 / 0.85),
+    var(--accent) 48%,
+    var(--accent-dim) 88%
+  );
+  box-shadow:
+    0 0 38px var(--accent),
+    inset 0 0 16px oklch(1 0 0 / 0.3);
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 38px var(--accent),
+      inset 0 0 16px oklch(1 0 0 / 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 18px var(--accent-dim),
+      inset 0 0 16px oklch(1 0 0 / 0.3);
+  }
+}
+[data-alert="yellow"] .lamp {
+  animation: pulse 3.5s ease-in-out infinite;
+}
+[data-alert="red"] .lamp {
+  animation: pulse 2.7s ease-in-out infinite;
+}
+[data-alert="auto-destruct"] .lamp {
+  animation: pulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lamp {
+    animation: none !important;
+  }
+}
+
+.tag {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+.condition {
+  margin: 4px 0 0;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.message {
+  margin: 6px 0 0;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-2);
+  letter-spacing: 0.02em;
+  max-width: 360px;
+}
+
+.divider {
+  background: var(--line-soft);
+  height: 100%;
+  min-height: 92px;
+}
+
+.side {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 24px;
+  }
+  .divider {
+    display: none;
+  }
+}
