@@ -1,4 +1,5 @@
 import { AppShell } from "../components/AppShell.tsx";
+import { ButtonLink } from "../components/ButtonLink.tsx";
 import { ConditionHero } from "../components/ConditionHero.tsx";
 import { Panel } from "../components/Panel.tsx";
 import styles from "./LandingPage.module.css";
@@ -27,19 +28,20 @@ const FEATURES = [
 export function LandingPage() {
   return (
     <AppShell alert="green">
+      <title>HomeShip — your apartment is your spaceship</title>
       <ConditionHero
         condition="All systems nominal"
         message="Register to start your journey"
       >
-        {/* TEMPORARY: plain links until routing exists. /signup and /login
-            have no page yet, so the server falls back to this one. */}
+        {/* TEMPORARY: /signup and /login show the 404 page until their
+            own pages land. */}
         <nav className={styles.auth} aria-label="Account">
-          <a className={`${styles.button} ${styles.primary}`} href="/signup">
+          <ButtonLink variant="primary" to="/signup">
             Sign up
-          </a>
-          <a className={`${styles.button} ${styles.secondary}`} href="/login">
+          </ButtonLink>
+          <ButtonLink variant="secondary" to="/login">
             Log in
-          </a>
+          </ButtonLink>
         </nav>
       </ConditionHero>
 

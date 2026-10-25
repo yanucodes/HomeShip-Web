@@ -7,3 +7,8 @@ import { afterEach } from "vitest";
 afterEach(() => {
   cleanup();
 });
+
+// jsdom doesn't implement scrolling and logs "Not implemented" when the
+// router's <ScrollRestoration> scrolls on navigation. Nothing to scroll in
+// tests, so make it a no-op.
+window.scrollTo = () => {};

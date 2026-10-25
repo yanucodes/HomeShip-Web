@@ -1,0 +1,39 @@
+.button {
+  display: block;
+  width: 100%;
+  padding: 15px 22px;
+  border-radius: 14px;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.primary {
+  border: 1px solid var(--accent);
+  color: var(--on-accent);
+  background: var(--accent);
+  box-shadow: 0 0 22px oklch(from var(--accent) 0.6 c h / 0.35);
+}
+.primary:hover {
+  box-shadow: 0 0 30px oklch(from var(--accent) 0.6 c h / 0.55);
+}
+
+.secondary {
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: transparent;
+}
+.secondary:hover {
+  border-color: var(--ink-3);
+  color: #fff;
+}
