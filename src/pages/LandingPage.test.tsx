@@ -1,18 +1,24 @@
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { LandingPage } from "./LandingPage.tsx";
+import { renderRoute } from "../test/renderRoute.tsx";
 
 describe("LandingPage", () => {
   it("shows the app name as the page heading", () => {
-    render(<LandingPage />);
+    renderRoute("/");
 
     expect(
       screen.getByRole("heading", { level: 1, name: "HomeShip" }),
     ).toBeInTheDocument();
   });
 
+  it("sets the document title", () => {
+    renderRoute("/");
+
+    expect(document.title).toBe("HomeShip — your apartment is your spaceship");
+  });
+
   it("links to sign-up and log-in", () => {
-    render(<LandingPage />);
+    renderRoute("/");
     const account = screen.getByRole("navigation", { name: "Account" });
 
     expect(
@@ -24,7 +30,7 @@ describe("LandingPage", () => {
   });
 
   it("lists the three features in the about panel", () => {
-    render(<LandingPage />);
+    renderRoute("/");
     const about = screen.getByRole("region", { name: "About this app" });
 
     const titles = within(about)
